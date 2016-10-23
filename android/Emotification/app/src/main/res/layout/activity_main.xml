@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="io.hackharvard.emotification.MainActivity"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_centerInParent="true"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/icon"
+        android:layout_gravity="center"
+        android:contentDescription="@string/app_name"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="25dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#dedede"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="Enable Emotification"
+                android:textSize="18sp"
+                android:textColor="#999999"/>
+
+            <Switch
+                android:id="@+id/enableBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:foregroundTint="@color/colorAccent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#dedede"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="Image Recognition"
+                android:textSize="18sp"
+                android:textColor="#999999"/>
+
+            <Switch
+                android:id="@+id/imageBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:foregroundTint="@color/colorAccent"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#dedede"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="Text to Speech"
+                android:textSize="18sp"
+                android:textColor="#999999"/>
+
+            <Switch
+                android:id="@+id/textBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:foregroundTint="@color/colorAccent"/>
+
+        </LinearLayout>
+
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:background="#dedede"-->
+            <!--android:padding="10dp">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="4"-->
+                <!--android:text="Amazon Echo"-->
+                <!--android:textSize="18sp"-->
+                <!--android:textColor="#999999"/>-->
+
+            <!--<Switch-->
+                <!--android:id="@+id/alexaBtn"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:foregroundTint="@color/colorAccent"/>-->
+
+        <!--</LinearLayout>-->
+
+
+    </LinearLayout>
+
+    <!--<TextView-->
+        <!--android:id="@+id/notifications"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:padding="25dp"-->
+        <!--android:textColor="#999999"/>-->
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Made by:"
+        android:textStyle="bold"
+        android:textColor="#909090"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#999999"
+        android:text="Md Islam\nJackson Ding\nLuis Dominguez\nConner Bender"/>
+
+
+</LinearLayout>
