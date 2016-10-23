@@ -11,9 +11,10 @@ BASE_URL = 'http://104.131.17.10:5000'
 def init():
 	if request.method == 'POST':
 		score = float(request.form['score'])
+		text = request.form['text']
 		filename = request.form['filename']+'.mid'
 		
-		print score	
+		print score +" - "+text
 	
 		if score > .875:
 			octave = 7
