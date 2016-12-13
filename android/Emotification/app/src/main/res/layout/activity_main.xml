@@ -57,7 +57,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:text="Image Recognition"
+                android:text="Read Images"
                 android:textSize="18sp"
                 android:textColor="#999999"/>
 
@@ -130,6 +130,51 @@
         <!--android:padding="25dp"-->
         <!--android:textColor="#999999"/>-->
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="#dedede">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="18dp"
+            android:layout_weight="1"
+            android:src="@drawable/down"
+            android:layout_gravity="center"/>
+
+        <SeekBar
+            android:id="@+id/volumeBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:padding="10dp"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/up"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/instructionsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="INSTRUCTIONS"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#999999"
+        android:layout_margin="25dp"
+        android:padding="15dp"
+        android:background="#dedede"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
@@ -138,7 +183,8 @@
         android:gravity="center"
         android:text="Made by:"
         android:textStyle="bold"
-        android:textColor="#909090"/>
+        android:textColor="#909090"
+        android:layout_marginTop="20dp"/>
 
 
     <TextView
@@ -147,7 +193,10 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="#999999"
-        android:text="Md Islam\nJackson Ding\nLuis Dominguez\nConner Bender"/>
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:text="Jackson Ding, Md Islam, Luis Dominguez, and Conner Bender"/>
+
 
 
 </LinearLayout>

@@ -9,46 +9,69 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Process;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
-    private String noti = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        final TextView notifications = (TextView) findViewById(R.id.notifications);
+        TextView instructionsBtn = (TextView) findViewById(R.id.instructionsBtn);
+        instructionsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, InstructionsActivity.class));
+            }
+        });
 
         final BroadcastReceiver onNotice = new BroadcastReceiver() {
 
             @Override
             public void onReceive(Context context, Intent intent) {
-
                 String title = intent.getStringExtra("title");
                 String text = intent.getStringExtra("text");
-
-                noti += title+" - "+text+"\n";
-
-//                notifications.setText(noti);
             }
         };
 
+        SharedPreferences sp0 = this.getSharedPreferences("volume", 0);
+        int volume = sp0.getInt("volume", 50);
+
+        SeekBar seekBar = (SeekBar) findViewById(R.id.volumeBar);
+        seekBar.setProgress(volume);
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                saveVolume(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
 
         final Switch aSwitch = (Switch) findViewById(R.id.enableBtn);
 
-        if(isMyServiceRunning(NotificationService.class)){
+        if(isMyServiceRunning(NotificationService.class) && isEnabled()){
             aSwitch.setChecked(true);
         }
 
@@ -57,13 +80,16 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     if(checkNotificationEnabled()){
+                        saveOption("enabled");
                         Toast.makeText(MainActivity.this, "Emotification Enabled", Toast.LENGTH_SHORT).show();
                         LocalBroadcastManager.getInstance(MainActivity.this).registerReceiver(onNotice, new IntentFilter("notification"));
                     } else {
                         Toast.makeText(MainActivity.this, "Please enable notifications", Toast.LENGTH_SHORT).show();
                         aSwitch.setChecked(false);
+                        startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
                     }
                 } else {
+                    clear("enabled");
                     Toast.makeText(MainActivity.this, "Emotification Disabled", Toast.LENGTH_SHORT).show();
                     LocalBroadcastManager.getInstance(MainActivity.this).unregisterReceiver(onNotice);
                 }
@@ -80,8 +106,10 @@ public class MainActivity extends AppCompatActivity {
         bSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    saveOption("imagerecog");
-                    Toast.makeText(MainActivity.this, "Enabled Image Recognition", Toast.LENGTH_SHORT).show();
+//                    saveOption("imagerecog");
+//                    Toast.makeText(MainActivity.this, "Enabled Image Recognition", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Image Recognition Coming Soon", Toast.LENGTH_SHORT).show();
+                    bSwitch.setChecked(false);
                 } else {
                     clear("imagerecog");
                     Toast.makeText(MainActivity.this, "Disabled Image Recognition", Toast.LENGTH_SHORT).show();
@@ -111,37 +139,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        checkPermissions();
+        requestPermission();
 
     }
 
 
-    public void saveOption(String option){
-        SharedPreferences sp1 = this.getSharedPreferences(option, 0);
-        SharedPreferences.Editor ed = sp1.edit();
-        ed.putBoolean(option, true);
-        ed.apply();
-    }
 
-
-
-    public void clear(String option){
-        SharedPreferences sp = this.getSharedPreferences(option, 0);
-        SharedPreferences.Editor ed = sp.edit();
-        ed.clear();
-        ed.commit();
-    }
-
-
-
-    private void checkPermissions(){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NOTIFICATION_POLICY)
+    private void requestPermission(){
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_CONTACTS)
                 != PackageManager.PERMISSION_GRANTED) {
 
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_NOTIFICATION_POLICY)) {
+                    Manifest.permission.READ_CONTACTS)) {
 
                 // Show an expanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
@@ -152,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 // No explanation needed, we can request the permission.
 
                 ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_NOTIFICATION_POLICY},
+                        new String[]{Manifest.permission.READ_CONTACTS},
                         101);
 
                 // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
@@ -189,6 +200,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void saveVolume(int volume){
+        SharedPreferences sp1 = this.getSharedPreferences("volume", 0);
+        SharedPreferences.Editor ed = sp1.edit();
+        ed.putInt("volume", volume);
+        ed.apply();
+    }
+
+
+    public void saveOption(String option){
+        SharedPreferences sp1 = this.getSharedPreferences(option, 0);
+        SharedPreferences.Editor ed = sp1.edit();
+        ed.putBoolean(option, true);
+        ed.apply();
+    }
+
+
+
+    public void clear(String option){
+        SharedPreferences sp = this.getSharedPreferences(option, 0);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.clear();
+        ed.commit();
+    }
+
+
+    private Boolean isEnabled(){
+        SharedPreferences sp0 = this.getSharedPreferences("enabled", 0);
+        return sp0.getBoolean("enabled", false);
+    }
+
 
     public boolean checkNotificationEnabled() {
         try{
@@ -213,25 +254,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return false;
-    }
-
-
-
-
-
-
-
-    private void destroyService(Class<?> serviceClass){
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        int count = 0;
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                manager.killBackgroundProcesses(service.service.getPackageName());
-                Process.killProcess(count);
-                break;
-            }
-            count++;
-        }
     }
 
 

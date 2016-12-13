@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Emotification requires access to your phone notifications. Follow this guide to enable access."
+            android:textSize="15sp"
+            android:textColor="#242424"
+            android:layout_marginBottom="25dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="STEP 1"
+            android:textColor="#242424"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text='Open the Settings application and navigate or search for "Notification access"'
+            android:textSize="15sp"
+            android:textColor="#242424" />
+
+
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:src="@drawable/screenshotbtn"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="10dp"
+            android:background="#000000" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="STEP 2"
+            android:textColor="#242424"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text='Find and enable "Emotifacation"'
+            android:textSize="15sp"
+            android:textColor="#242424" />
+
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:src="@drawable/screenshotbtn"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="10dp"
+            android:background="#000000" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="STEP 3"
+            android:textColor="#242424"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text='Open the Emotification application and enable it'
+            android:textSize="15sp"
+            android:textColor="#242424"
+            android:layout_marginBottom="10dp"/>
+
+        <ImageView
+            android:id="@+id/image3"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:src="@drawable/screenshotbtn"
+            android:layout_marginBottom="25dp"
+            android:background="#000000" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Optional"
+            android:textColor="#242424"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text='Enable  Text to Speech and Image to Speech to read your messages out loud'
+            android:textSize="15sp"
+            android:textColor="#242424" />
+
+        <ImageView
+            android:id="@+id/image4"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:src="@drawable/screenshotbtn"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="10dp"
+            android:background="#000000" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,10 +1,12 @@
-package io.hackharvard.emotification;
+package MicrosoftAPI;
 
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import MicrosoftAPI.MicrosoftAPIResponse;
 
 /**
  * Created by mdislam on 10/22/16.
