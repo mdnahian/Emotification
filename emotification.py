@@ -10,9 +10,9 @@ class Sentiment():
 	def analyze(self, text):
 		v = vaderSentiment.sentiment(text)		
 
-		if v['neg'] > v['pos']:
+		if v['neg'] < v['pos']:
 			score = 1 - v['neg']
-		elif v['neg'] < v['pos']:
+		elif v['neg'] > v['pos']:
 			score = v['pos']
 		else:
 			score = 0.500
